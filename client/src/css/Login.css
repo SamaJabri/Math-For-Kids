@@ -1,0 +1,176 @@
+.login-page
+{
+    display          : flex;
+    align-items      : center;
+    justify-content  : center;
+    width            : 100vw;
+    height           : 100vh;
+    background-color : var(--dark-blue);
+}
+
+.login
+{
+    display         : flex;
+    overflow        : hidden;
+    align-items     : center;
+    justify-content : space-around;
+    width           : 100%;
+    height          : 80%;
+}
+
+.forms
+{
+    position        : relative;
+    top             : -25rem;
+    display         : flex;
+    flex-direction  : column;
+    justify-content : space-between;
+    width           : 40%;
+    height          : 200%;
+    transition      : all 1s;
+}
+
+.login__image img
+{
+    width  : 20rem;
+    height : 20rem;
+}
+
+.login__image h1
+{
+    margin-top  : 2rem;
+    font-size   : 2.8rem;
+    font-weight : 300;
+    text-align  : center;
+    color       : white;
+    text-shadow : var(--shadow);
+}
+
+.login__form,
+.sign-up__form
+{
+    display          : flex;
+    flex-direction   : column;
+    justify-content  : space-between;
+    width            : 100%;
+    height           : 35rem;
+    padding          : 6rem 4.5rem 2rem 4.5rem;
+    border-radius    : var(--radius);
+    background-color : var(--blue);
+    filter           : drop-shadow(var(--shadow));
+}
+
+.sign-up__form
+{
+    padding-top : 3.5rem;
+}
+
+.login__form form,
+.sign-up__form form
+{
+    display        : flex;
+    align-items    : center;
+    flex-direction : column;
+    gap            : 1.5rem;
+}
+
+.form-input
+{
+    width         : 100%;
+    height        : 4rem;
+    padding       : 1rem;
+    font-size     : 1.4rem;
+    border        : none;
+    border-radius : var(--radius);
+    outline       : none;
+}
+
+.form-button
+{
+    width            : 50%;
+    margin-top       : 4.5rem;
+    padding          : 1rem;
+    transition       : all 0.3s;
+    font-size        : 1.5rem;
+    color            : var(--blue);
+    border           : none;
+    border-radius    : var(--radius);
+    background-color : white;
+}
+
+.form-button:hover
+{
+    cursor           : pointer;
+    color            : white;
+    background-color : var(--dark-blue);
+}
+
+.login__form p,
+.sign-up__form p
+{
+    font-size  : 1.4rem;
+    text-align : center;
+    color      : white;
+}
+
+.login__form a,
+.sign-up__form a
+{
+    transition : all 0.3s;
+    color      : var(--yellow);
+}
+
+.login__form a:hover,
+.sign-up__form a:hover
+{
+    cursor : pointer;
+}
+
+@media (max-width : 700px)
+{
+    .forms
+    {
+        position        : relative;
+        top             : 0;
+        left            : -37rem;
+        flex-direction  : row;
+        justify-content : space-between;
+        width           : 114rem;
+        height          : 35rem;
+        transition      : all 1s;
+    }
+
+    .login-page
+    {
+        height  : auto;
+        padding : 5rem 0;
+    }
+
+    .login
+    {
+        flex-direction : column;
+        gap            : 5rem;
+    }
+
+    .login__image img
+    {
+        width  : 15rem;
+        height : 15rem;
+    }
+
+    .login__image h1
+    {
+        margin-top  : 1rem;
+        font-size   : 2.5rem;
+        font-weight : 300;
+        text-align  : center;
+        color       : white;
+        text-shadow : var(--shadow);
+    }
+
+    .login__form,
+    .sign-up__form
+    {
+        width : 40rem;
+    }
+}
