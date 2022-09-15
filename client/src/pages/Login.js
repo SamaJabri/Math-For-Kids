@@ -45,12 +45,14 @@ const Login = () =>
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    // const submitLogin = () => {
-    //     Axios.post('http://localhost:8080/login', JSON.parse({
-    //         "email" : email,
-    //         "password" : password,
-    //     }));
-    // }
+    const submitLogin = () => {
+        Axios.post('http://localhost:8080/login', JSON.parse({
+            email : email,
+            password : password,
+        }))
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
+    }
 
     return (
         <div className="login-page">
@@ -68,22 +70,26 @@ const Login = () =>
                                        onchange={(e) => setPassword(e.target.value)}
                             />
 
-                            <ConfirmButton value="Login" />
+                            <ConfirmButton value="Login" onclick={ submitLogin() } type="submit" />
 
                         </form>
 
                         <AdditionalSentence sentence="Don't have an account?"
-                                            option=" Sign up" onclick={ () => {
-                            const forms = document.getElementById("forms");
-                            if(windowWidth >= 700) {
-                                forms.style.top = '-25rem';
-                            }
-                            else {
-                                forms.style.left = '-37rem';
-                            }
-                            setEmail('');
-                            setPassword('');
-                        } }  />
+                                            option=" Sign up"
+                                            onclick={ () => {
+                                                const forms = document.getElementById("forms");
+
+                                                if(windowWidth >= 700) {
+                                                    forms.style.top = '-25rem';
+                                                }
+                                                else {
+                                                    forms.style.left = '-37rem';
+                                                }
+
+                                                setEmail('');
+                                                setPassword('');
+                                                }
+                                            }  />
                     </div>
 
                     <div className="sign-up__form" >
@@ -101,25 +107,26 @@ const Login = () =>
                                        onchange={(e) => setConfirmPassword(e.target.value)}
                             />
 
-                            <ConfirmButton value="Sign up" />
+                            <ConfirmButton value="Sign up" type="submit" />
 
                         </form>
 
                         <AdditionalSentence sentence="Already have an account?"
-                                            option=" Login" onclick={ () => {
-                            const forms = document.getElementById("forms");
+                                            option=" Login"
+                                            onclick={ () => {
+                                                const forms = document.getElementById("forms");
 
-                            if(windowWidth >= 700) {
-                                forms.style.top = '25rem';
-                            }
-                            else {
-                                forms.style.left = '38rem';
-                            }
-                            setEmail('');
-                            setPassword('');
-                            setConfirmPassword('');
-                        }
-                        }  />
+                                                if(windowWidth >= 700) {
+                                                    forms.style.top = '25rem';
+                                                }
+                                                else {
+                                                    forms.style.left = '38rem';
+                                                }
+                                                setEmail('');
+                                                setPassword('');
+                                                setConfirmPassword('');
+                                                }
+                                            }  />
                     </div>
                 </div>
 
