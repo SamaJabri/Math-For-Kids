@@ -1,0 +1,216 @@
+/* User Profile */
+.user-profile__icon
+{
+    position         : fixed;
+    top              : 1.5rem;
+    right            : 2rem;
+    display          : flex;
+    align-items      : center;
+    justify-content  : center;
+    width            : 5rem;
+    height           : 5rem;
+    font-size        : 3rem;
+    color            : white;
+    border-radius    : 3rem;
+    background-color : var(--blue);
+    box-shadow       : var(--shadow);
+}
+
+.user-profile__icon:hover
+{
+    cursor : pointer;
+}
+
+.user-profile__model
+{
+    position         : absolute;
+    top              : 7rem;
+    right            : 1rem;
+    display          : flex;
+    align-items      : center;
+    flex-direction   : column;
+    justify-content  : center;
+    width            : 15rem;
+    height           : 13rem;
+    border-radius    : var(--radius);
+    background-color : var(--grey);
+    box-shadow       : var(--shadow);
+    gap              : 2rem;
+}
+
+.user-profile__model button
+{
+    width            : 90%;
+    height           : 25%;
+    margin-top       : 0;
+    color            : white;
+    background-color : var(--blue);
+}
+
+/* Animated Background */
+.animated-background
+{
+    position         : static;
+    height           : 100%;
+    font-size        : 4.5rem;
+    color            : white;
+    background-color : var(--dark-blue);
+    filter           : blur(2px);
+}
+
+.animated-background > div:nth-of-type(1)
+{
+    position : absolute;
+    top      : 5rem;
+    left     : 6rem;
+}
+
+.animated-background > div:nth-of-type(2)
+{
+    position : absolute;
+    top      : 15rem;
+    left     : 13rem;
+}
+
+.animated-background > div:nth-of-type(3)
+{
+    position : absolute;
+    top      : 26rem;
+    left     : 6rem;
+}
+
+.animated-background > div:nth-of-type(4)
+{
+    position : absolute;
+    top      : 32rem;
+    left     : 17rem;
+}
+
+.animated-background > div:nth-of-type(5)
+{
+    position : absolute;
+    top      : 5rem;
+    right    : 23rem;
+}
+
+.animated-background > div:nth-of-type(6)
+{
+    position : absolute;
+    top      : 10rem;
+    right    : 8rem;
+}
+
+.animated-background > div:nth-of-type(7)
+{
+    position : absolute;
+    top      : 22rem;
+    right    : 20rem;
+}
+
+.animated-background > div:nth-of-type(8)
+{
+    position : absolute;
+    top      : 23rem;
+    right    : 7rem;
+}
+
+.animated-background > div:nth-of-type(9)
+{
+    position : absolute;
+    top      : 40rem;
+    right    : 25rem;
+}
+
+/* + */
+.animated-background > div:nth-of-type(10)
+{
+    position : absolute;
+    top      : 38rem;
+    right    : 8rem;
+}
+
+/* x */
+.animated-background > div:nth-of-type(11)
+{
+    position : absolute;
+    top      : 40rem;
+    left     : 7rem;
+}
+
+/* = */
+.animated-background > div:nth-of-type(12)
+{
+    position  : absolute;
+    top       : 42rem;
+    left      : 24rem;
+    font-size : 5rem;
+}
+
+/* - */
+.animated-background > div:nth-of-type(13)
+{
+    position  : absolute;
+    top       : 4rem;
+    left      : 20rem;
+    font-size : 6rem;
+}
+
+/* Home */
+.homepage
+{
+    height : 100vh;
+}
+
+.homepage__choose-mode
+{
+    position        : absolute;
+    top             : 25%;
+    display         : flex;
+    align-items     : center;
+    flex-direction  : column;
+    justify-content : center;
+    width           : 100%;
+    color           : white;
+    gap             : 5rem;
+}
+
+.homepage__choose-mode > h2
+{
+    font-size : 3rem;
+}
+
+.homepage__options
+{
+    display : flex;
+}
+
+.homepage__options > div
+{
+    display         : flex;
+    align-items     : center;
+    flex-direction  : column;
+    justify-content : center;
+    min-width       : 12rem;
+    font-size       : 2rem;
+    gap             : 2rem;
+}
+
+.homepage__icon
+{
+    display          : flex;
+    align-items      : center;
+    flex-direction   : column;
+    justify-content  : center;
+    width            : 7.5rem;
+    height           : 7.5rem;
+    font-size        : 3.5rem;
+    border-radius    : var(--radius);
+    background-color : var(--blue);
+    box-shadow       : var(--shadow);
+}
+
+.homepage__icon:hover
+{
+    cursor     : pointer;
+    box-shadow : none;
+}
