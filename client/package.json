@@ -40,6 +40,7 @@
     "axios": "^0.27.2",
     "rc-tween-one": "^3.0.6",
     "react-icons": "^4.4.0",
+    "react-router": "^6.4.0",
     "react-router-dom": "^6.4.0"
   }
 }

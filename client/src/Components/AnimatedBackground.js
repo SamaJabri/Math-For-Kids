@@ -17,9 +17,9 @@ const AnimatedBackground = () =>
     const animate = {
         numbers : {
             ...loop,
-            y: 15,
-            duration: 3000,
-            delay: 300,
+            y: 35,
+            duration: 1000,
+            delay: 200,
         }
     }
 

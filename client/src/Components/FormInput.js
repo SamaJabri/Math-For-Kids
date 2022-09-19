@@ -6,6 +6,7 @@ const FormInput = ( props ) =>
         <input className="form-input"
                placeholder={ props.placeholder }
                name={ props.id }
+               value={ props.value }
                type={ props.type }
                required={ props.required }
                onChange={ props.onchange }

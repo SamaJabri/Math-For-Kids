@@ -5,9 +5,8 @@ import ConfirmButton from '../Components/ConfirmButton';
 import Image from '../Components/Image';
 import AdditionalSentence from '../Components/AdditionalSentence';
 
-const Login = () =>
+const Login = (props) =>
 {
-    const forms = document.getElementById("forms");
     let windowWidth = window.innerWidth;
 
     window.onresize = () => {
@@ -15,43 +14,95 @@ const Login = () =>
         console.log(windowWidth);
     }
 
-    const showSignUp = () => {
-        const forms = document.getElementById("forms");
-        if(windowWidth >= 700) {
-            forms.style.top = '-25rem';
-        }
-        else {
-            forms.style.left = '-37rem';
-        }
-        setEmail('');
-        setPassword('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    // const navigate = useNavigate();
+
+    const submitLogin = () => {
+        Axios.post('http://localhost:8080/login',{
+            "email" : email,
+            "password" : password,
+        })
+        .then((response) =>
+            {
+                if(response.status === 200) {
+                    alert("Success Login");
+                    localStorage.setItem("authenticated", true);
+                    localStorage.setItem("id", JSON.stringify(response.data));
+                    redirectToHome();
+                }
+                else if(response.code === 204) {
+                    logInFailed("Wrong Credentials!");
+                    alert("Username and password don't match");
+                }
+                else {
+                    logInFailed("Username doesn't exist");
+                    alert("Username doesn't exist");
+                }
+
+                return response.data;
+                // console.log(response);
+                // if(response.data.message) {
+                //     console.log(response.data.message);
+                //     localStorage.setItem("authenticated", false);
+                // }
+                // else {
+                //     localStorage.setItem("authenticated", true);
+                //     localStorage.setItem("id", response.data.id);
+                //     navigate("/home/choose-mode");
+                // }
+            }
+        )
+        .catch((error) => console.log(error));
     }
 
-    const showLogin = () => {
-        const forms = document.getElementById("forms");
-
-        if(windowWidth >= 700) {
-            forms.style.top = '25rem';
+    const submitSignUp = () => {
+        if(email.length && password.length) {
+            Axios.post('http://localhost:8080/signup',{
+                "email" : email,
+                "password" : password,
+            }).then(function (response) {
+                if(response.status === 200) {
+                    console.log("Registration successful");
+                    localStorage.setItem("authenticated", true);
+                    redirectToHome();
+                }
+                else {
+                    console.log("Some error occurred");
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
         else {
-            forms.style.left = '38rem';
+            logInFailed();
         }
+    }
+
+    const redirectToHome = () => {
+        props.history.push('/home');
+    }
+
+    const resetFields = () => {
         setEmail('');
         setPassword('');
         setConfirmPassword('');
     }
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    // const logout = () => {
+    //     localStorage.removeItem("id");
+    // }
+    //
+    // const getData = () => {
+    //     return Axios.get('http://localhost:8080/');
+    // }
 
-    const submitLogin = () => {
-        Axios.post('http://localhost:8080/login', JSON.parse({
-            email : email,
-            password : password,
-        }))
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error));
+    const logInFailed = (string) => {
+        return (
+            <p className="wrong-credentials">{string}</p>
+        )
     }
 
     return (
@@ -60,13 +111,16 @@ const Login = () =>
                 <Image />
                 <div className="forms" id="forms">
                     <div className="login__form">
-                        <form>
+                        <form onSubmit={(e) => e.preventDefault()}>
+                            {
+                                logInFailed()
+                            }
                             <FormInput placeholder="Email" id="email"
-                                       type="email" required="true"
+                                       type="email" required="true" value={email}
                                        onchange={(e) => setEmail(e.target.value)}
                             />
                             <FormInput placeholder="Password" id="password"
-                                       type="password" required="true"
+                                       type="password" required="true" value={password}
                                        onchange={(e) => setPassword(e.target.value)}
                             />
 
@@ -86,28 +140,34 @@ const Login = () =>
                                                     forms.style.left = '-37rem';
                                                 }
 
-                                                setEmail('');
-                                                setPassword('');
+                                                resetFields();
                                                 }
                                             }  />
                     </div>
 
                     <div className="sign-up__form" >
-                        <form>
+                        <form onSubmit={(e) => e.preventDefault()}>
+                            {
+                                logInFailed()
+                            }
                             <FormInput placeholder="Email" id="email"
-                                       type="email" required="true"
+                                       type="email" required="true" value={email}
                                        onchange={(e) => setEmail(e.target.value)}
                             />
                             <FormInput placeholder="Password" id="password"
-                                       type="password" required="true"
+                                       type="password" required="true" value={password}
                                        onchange={(e) => setPassword(e.target.value)}
                             />
                             <FormInput placeholder="Confirm Password" id="confirmPassword"
-                                       type="password" required="true"
+                                       type="password" required="true" value={confirmPassword}
                                        onchange={(e) => setConfirmPassword(e.target.value)}
                             />
+                            {
+                                password !== confirmPassword ?
+                                <p className="password-matching" >Passwords don't match</p> : null
+                            }
 
-                            <ConfirmButton value="Sign up" type="submit" />
+                            <ConfirmButton value="Sign up" type="submit" onclick={ submitSignUp() } />
 
                         </form>
 
@@ -122,9 +182,7 @@ const Login = () =>
                                                 else {
                                                     forms.style.left = '38rem';
                                                 }
-                                                setEmail('');
-                                                setPassword('');
-                                                setConfirmPassword('');
+                                                resetFields()
                                                 }
                                             }  />
                     </div>
