@@ -21,7 +21,7 @@
     overflow: hidden;
     height: -webkit-fill-available;
     transition      : all 1s;
-
+    height: calc(100vh - 10rem);
 }
 
 .basics > div {
@@ -351,3 +351,4 @@
         margin-top: 1rem;
     }
 }
+

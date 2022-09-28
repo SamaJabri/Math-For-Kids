@@ -27,21 +27,22 @@ const Basics = () =>
     const [basicsList, setBasicsList] = useState([]);
 
     useEffect((() => {
-        Axios.get('http://localhost:8080/get-operations')
+        Axios.get('http://localhost:8080/get_operations')
         .then((response) => {
             if(response.status !== 200) {
                 alert("Something happened, please refresh :(");
             }
             else {
-                setBasicsList({...basicsList, response});
+                setBasicsList(response.data);
             }
         }).catch((error) => console.log(error));
-    }));
+    }),[]);
 
     const submitExercises = () => {
-        Axios.post('http://localhost:8080/login',{
+        Axios.post('http://localhost:8080/increaseExperience',{
             "date" : new Date(),
-            "points" : basicsList.length,
+            "amount" : basicsList.length,
+            "accountID" : localStorage.getItem("id")
         })
         .then((response) =>
             {
@@ -169,7 +170,7 @@ const Basics = () =>
                 </h1>
                 <p>You earned
                     {/*Change 'list' to 'basicsList' on integration*/}
-                    <span> { list.length } points</span>
+                    <span>  { basicsList && basicsList.length } points</span>
                 </p>
                 <Hooray />
                 <ConfirmButton value="Go home" type="button"
@@ -179,8 +180,10 @@ const Basics = () =>
             <div className="basics" id="questions">
 
                 {
+                	  basicsList &&
                     // Change 'list' to 'basicsList' on integration
-                    list.map((question) => {
+                    basicsList.map((question) => {
+                    		console.log(question);
                         return (
                             <div key={ question.id }>
                                 <div className="basics__question" >
@@ -269,7 +272,8 @@ const Basics = () =>
                                                                questions.style.top = `calc(${top} - 49rem)`;
                                                                setAnswer({...answer, id: 0});
 
-                                                               if(answer.id === list.length) {
+                                                               if(answer.id === basicsList.length) {
+
                                                                    document.getElementById("hooray").style.display = 'flex';
                                                                    // Send request to backend to add list.length points to user
                                                                }
@@ -285,7 +289,7 @@ const Basics = () =>
                                     </div>
 
                                 </div>
-                                <p className="basics__question-number">{question.id} / {list.length}</p>
+                                <p className="basics__question-number">{question.id} / {basicsList.length}</p>
                             </div>
                         )
                     })
@@ -335,3 +339,4 @@ export default Basics;
 {/*    </div>*/}
 {/*    <p className="basics__question-number">1 / 20</p>*/}
 {/*</div>*/}
+
