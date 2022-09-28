@@ -3,6 +3,7 @@ import Axios from 'axios';
 import UserProfile from '../Components/UserProfile';
 import AnimatedBackground from '../Components/AnimatedBackground';
 import ChooseMode from '../Components/ChooseMode';
+import {NavLink} from 'react-router-dom';
 
 const HomePage = (props) =>
 {
@@ -13,7 +14,7 @@ const HomePage = (props) =>
                 'id' : 1
             }
         }).then((response) => {
-            if(response.stats !== 200) {
+            if(response.status !== 200) {
                 redirectToLogin();
             }
         }).catch((error) => console.log(error));
@@ -32,10 +33,15 @@ const HomePage = (props) =>
                 <h2>Choose The Mode</h2>
                 <div className="homepage__options">
                     <ChooseMode value="Geometry" />
-                    <ChooseMode value="Basics" />
+                    <ChooseMode value="Basics"
+                    onclick={() => document.getElementById('basics-button--redirect').click()} />
                     <ChooseMode value="Measurements" />
+
+                    <NavLink to={'/basics'} >
+                        <button id="basics-button--redirect" style={{ display: 'none' }} >hi</button>
+                    </NavLink>
                 </div>
-              </div>
+            </div>
         </div>
     );
 };

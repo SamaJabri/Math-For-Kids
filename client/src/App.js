@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Login from './pages/Login';
+import Basics from './pages/Basics';
+import Statistics from './pages/Statistics';
 
 
 function App() {
@@ -40,6 +42,8 @@ function App() {
                     <Route exact path='/' element={ <Login /> } />
                     <Route path='/login' element={ <Login /> } />
                     <Route path='/home' element={ <HomePage /> } />
+                    <Route path='/basics' element={ <Basics /> } />
+                    <Route path='/statistics' element={ <Statistics /> } />
                 </Routes>
             </BrowserRouter>
         </div>

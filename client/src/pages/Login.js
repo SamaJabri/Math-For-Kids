@@ -4,6 +4,7 @@ import FormInput from '../Components/FormInput';
 import ConfirmButton from '../Components/ConfirmButton';
 import Image from '../Components/Image';
 import AdditionalSentence from '../Components/AdditionalSentence';
+import {NavLink} from 'react-router-dom';
 
 const Login = (props) =>
 {
@@ -18,8 +19,6 @@ const Login = (props) =>
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    // const navigate = useNavigate();
-
     const submitLogin = () => {
         Axios.post('http://localhost:8080/login',{
             "email" : email,
@@ -27,50 +26,36 @@ const Login = (props) =>
         })
         .then((response) =>
             {
-                if(response.status === 200) {
-                    alert("Success Login");
+                if(response.data !== '') {
+                    // alert("Success Login");
                     localStorage.setItem("authenticated", true);
                     localStorage.setItem("id", JSON.stringify(response.data));
                     redirectToHome();
                 }
-                else if(response.code === 204) {
-                    logInFailed("Wrong Credentials!");
-                    alert("Username and password don't match");
-                }
                 else {
-                    logInFailed("Username doesn't exist");
-                    alert("Username doesn't exist");
+                    logInFailed("Wrong Credentials!");
+                    localStorage.setItem("authenticated", false);
                 }
 
                 return response.data;
-                // console.log(response);
-                // if(response.data.message) {
-                //     console.log(response.data.message);
-                //     localStorage.setItem("authenticated", false);
-                // }
-                // else {
-                //     localStorage.setItem("authenticated", true);
-                //     localStorage.setItem("id", response.data.id);
-                //     navigate("/home/choose-mode");
-                // }
             }
         )
         .catch((error) => console.log(error));
     }
 
     const submitSignUp = () => {
-        if(email.length && password.length) {
+        if(email.length && password.length && (password === confirmPassword)) {
             Axios.post('http://localhost:8080/signup',{
                 "email" : email,
                 "password" : password,
             }).then(function (response) {
-                if(response.status === 200) {
-                    console.log("Registration successful");
+                if(response.data === true) {
+                    // alert("Registration successful");
                     localStorage.setItem("authenticated", true);
                     redirectToHome();
                 }
                 else {
-                    console.log("Some error occurred");
+                    alert("Some error occurred");
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -82,7 +67,7 @@ const Login = (props) =>
     }
 
     const redirectToHome = () => {
-        props.history.push('/home');
+        document.getElementById('form-button--redirect').click();
     }
 
     const resetFields = () => {
@@ -90,14 +75,6 @@ const Login = (props) =>
         setPassword('');
         setConfirmPassword('');
     }
-
-    // const logout = () => {
-    //     localStorage.removeItem("id");
-    // }
-    //
-    // const getData = () => {
-    //     return Axios.get('http://localhost:8080/');
-    // }
 
     const logInFailed = (string) => {
         return (
@@ -113,18 +90,22 @@ const Login = (props) =>
                     <div className="login__form">
                         <form onSubmit={(e) => e.preventDefault()}>
                             {
-                                logInFailed()
+                                logInFailed
                             }
-                            <FormInput placeholder="Email" id="email"
+                            <FormInput placeholder="Email" id="email" class="form-input"
                                        type="email" required="true" value={email}
                                        onchange={(e) => setEmail(e.target.value)}
                             />
-                            <FormInput placeholder="Password" id="password"
+                            <FormInput placeholder="Password" id="password" class="form-input"
                                        type="password" required="true" value={password}
                                        onchange={(e) => setPassword(e.target.value)}
                             />
 
-                            <ConfirmButton value="Login" onclick={ submitLogin() } type="submit" />
+                            <NavLink to={'/home'} >
+                                <button id="form-button--redirect" style={{ display: 'none' }} >hi</button>
+                            </NavLink>
+
+                            <ConfirmButton value="Login" onclick={ submitLogin } type="submit" />
 
                         </form>
 
@@ -148,26 +129,26 @@ const Login = (props) =>
                     <div className="sign-up__form" >
                         <form onSubmit={(e) => e.preventDefault()}>
                             {
-                                logInFailed()
+                                logInFailed
                             }
-                            <FormInput placeholder="Email" id="email"
+                            <FormInput placeholder="Email" id="email" class="form-input"
                                        type="email" required="true" value={email}
                                        onchange={(e) => setEmail(e.target.value)}
                             />
-                            <FormInput placeholder="Password" id="password"
+                            <FormInput placeholder="Password" id="password" class="form-input"
                                        type="password" required="true" value={password}
                                        onchange={(e) => setPassword(e.target.value)}
                             />
-                            <FormInput placeholder="Confirm Password" id="confirmPassword"
+                            <FormInput placeholder="Confirm Password" id="confirmPassword" class="form-input"
                                        type="password" required="true" value={confirmPassword}
                                        onchange={(e) => setConfirmPassword(e.target.value)}
                             />
                             {
                                 password !== confirmPassword ?
-                                <p className="password-matching" >Passwords don't match</p> : null
+                                <p className="password-matching">Passwords don't match</p> : null
                             }
 
-                            <ConfirmButton value="Sign up" type="submit" onclick={ submitSignUp() } />
+                            <ConfirmButton value="Sign up" type="submit" onclick={ submitSignUp } />
 
                         </form>
 
