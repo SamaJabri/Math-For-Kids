@@ -1,6 +1,7 @@
 package com.example.MathForKids.Repository;
 
 import com.example.MathForKids.Model.Account;
+import com.example.MathForKids.Model.Player;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,9 @@ public class AccountRepositoryImpl implements AccountRepository {
 
         if(temp_account == null){
 
+            Player player = new Player(0,account);
             mongoTemplate.save(account);
+            mongoTemplate.save(player);
             logger.info("New account added");
             return true;
 
