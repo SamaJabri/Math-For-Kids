@@ -43,7 +43,6 @@ const Basics = () =>
             "date" : new Date(),
             "amount" : basicsList.length,
             "accountID" : localStorage.getItem("id")
-
         })
         .then((response) =>
             {
@@ -274,6 +273,7 @@ const Basics = () =>
                                                                setAnswer({...answer, id: 0});
 
                                                                if(answer.id === basicsList.length) {
+
                                                                    document.getElementById("hooray").style.display = 'flex';
                                                                    // Send request to backend to add list.length points to user
                                                                }
@@ -339,3 +339,4 @@ export default Basics;
 {/*    </div>*/}
 {/*    <p className="basics__question-number">1 / 20</p>*/}
 {/*</div>*/}
+

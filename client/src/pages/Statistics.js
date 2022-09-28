@@ -3,8 +3,6 @@ import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XA
 
 const Statistics = () =>
 {
-	 
-
     const data = [
         {
             day: 'Sep, 24',
@@ -72,3 +70,4 @@ const Statistics = () =>
 }
 
 export default Statistics;
+

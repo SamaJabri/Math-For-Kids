@@ -4,8 +4,12 @@ const ConfirmButton = ( props ) =>
 {
     return (
         <button className="form-button"
-                type="submit"
-                onClick={props.onclick}>
+                type={ props.type }
+                onClick={ props.onclick }
+                disabled={ props.disabled }
+                key={ props.key }
+                id={ props.id }
+        >
             { props.value }
         </button>
     );
