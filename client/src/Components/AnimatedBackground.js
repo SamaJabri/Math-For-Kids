@@ -2,7 +2,7 @@ import React from 'react';
 import TweenOne from 'rc-tween-one';
 import PropTypes from 'prop-types';
 
-const AnimatedBackground = () =>
+const AnimatedBackground = (props) =>
 {
     const duration = 3000;
     const ease = 'easeInOutSine';
@@ -17,9 +17,9 @@ const AnimatedBackground = () =>
     const animate = {
         numbers : {
             ...loop,
-            y: 15,
-            duration: 3000,
-            delay: 300,
+            y: -45,
+            duration: 1000,
+            delay: 200,
         }
     }
 
@@ -31,6 +31,7 @@ const AnimatedBackground = () =>
                 <TweenOne
                     animation={animate.numbers}
                     className="code-box-shape"
+                    paused={props.paused}
                 >
                     <div>
                         {i}

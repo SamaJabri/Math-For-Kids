@@ -17,7 +17,7 @@ const ChooseMode = (props) =>
     }
 
     return (
-        <div>
+        <div onClick={props.onclick}>
             <div className="homepage__icon">
                 { icon }
             </div>

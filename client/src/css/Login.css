@@ -126,6 +126,20 @@
     cursor : pointer;
 }
 
+.password-matching {
+    position: fixed;
+    top: 19.5rem;
+    left: 4.7rem;
+}
+
+.wrong-credentials {
+    position: fixed;
+    width: 100%;
+    top: 0.6rem;
+    font-size: 1.7rem !important;
+    text-align: center;
+}
+
 @media (max-width : 700px)
 {
     .forms
