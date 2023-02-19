@@ -2,12 +2,16 @@
 
 Math for kids is a platform for kids to learn maths.
 
-## Technologies: 
+## Technologies
+
+### Frontend:
 - ReactJS
 - CSS
+
+### Backend:
 - Springboot
 - MongoDB
 
-## Features: 
+## Features
 - Responsive Design
 - User Friendly Interface
