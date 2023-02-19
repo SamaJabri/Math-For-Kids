@@ -4,7 +4,7 @@ Math for kids is a platform for kids to learn maths.
 
 ## Technologies: 
 - ReactJS
-- Tailwind
+- CSS
 - Springboot
 - MongoDB
 
